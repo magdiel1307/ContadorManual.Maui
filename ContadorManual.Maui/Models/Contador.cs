@@ -1,23 +1,48 @@
-﻿namespace ContadorManual.Maui.Models
+﻿using System.ComponentModel;
+namespace ContadorManual.Maui.Models;
+
+public class Contador: INotifyPropertyChanged
 {
-    public class Contador
+    private int _conteo;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public int Conteo
     {
-        private int _conteo;
-        public int conteo=> _conteo;
-        public Contador()
+        get => _conteo;
+        set
         {
-            _conteo = 0;
+            if (_conteo != value)
+            {
+                _conteo = value;
+                OnPropertyChanged(nameof(Conteo));
+            }
         }
+    }
 
-        public void Contar()
-        {
-            _conteo++;
-        }
+    public Contador()
+    {
+        Conteo = 0;
+    }
 
-        public void Reiniciar()
+    public void Contar()
+    {
+        Conteo++;
+    }
+
+    public void Reiniciar()
+    {
+        Conteo = 0;
+    }
+    private void OnPropertyChanged(string propertyName)
+    {
+        if (PropertyChanged != null)
         {
-            _conteo = 0;
+            PropertyChanged(this,
+                new PropertyChangedEventArgs(propertyName));
         }
 
     }
+
 }
+
