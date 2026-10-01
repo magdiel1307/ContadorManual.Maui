@@ -33,6 +33,24 @@
                 />
 
         </Border>
+        <HorizontalStackLayout
+            Spacing="8"
+            >
+            <Label
+                Text="incrementar conteo por: "
+                VerticalOptions="Center"/>
+            <Entry
+                Text="{Binding Source={x:Reference IcrementoStepper}, Path=Value}"
+                BackgroundColor="WhiteSmoke"
+                IsReadOnly="True"/>
+            <Stepper
+                Value="{Binding Path=Incremento}"
+                Increment="1"
+                Minimum="1"
+                Maximum="20"
+                x:Name="IcrementoStepper"/>
+        </HorizontalStackLayout>
+
 
 
 
